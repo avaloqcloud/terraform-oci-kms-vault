@@ -1,0 +1,14 @@
+schemaVersion: 1.1.0
+locale: "en"
+groupings:
+  - title: "OCI KMS"
+    variables:
+    - compartment_ocid
+
+
+variables:
+  compartment_id:
+    type: oci:identity:compartment:id
+    title: Target Compartment
+    description: The target compartment id where to deploy KMS (Vault and Key).
+    required: true
