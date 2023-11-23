@@ -1,8 +1,3 @@
-variable "user_ocid" {}
-variable "fingerprint" {}
-variable "tenancy_ocid" {}
-variable "region" {}
-variable "private_key_path" {}
 variable "vault" {
   description = "Vault input object"
   type = map(object({
@@ -16,10 +11,13 @@ variable "vault" {
     is_primary          = optional(bool),
     management_endpoint = optional(string),
   }))
+
+  # Not possible in case we want to support just providing the vault_id in case object already exists
   validation {
     condition = alltrue([
       for k, v in var.vault : contains(["DEFAULT", "PRIVATE"], v.vault_type)
     ])
     error_message = "Validation of the Vault object failed. 'vault_type' must be one of 'DEFAULT' or 'PRIVATE'"
   }
+
 }
