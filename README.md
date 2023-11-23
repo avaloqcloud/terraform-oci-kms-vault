@@ -2,6 +2,18 @@
 # Terraform OCI KMS Vault
 The code provides a reusable Terraform module that provisions a Vault on Oracle Cloud Infrastructure.
 
+## Example Input
+`key.auto.tfvars.json`:
+```json
+vault = {
+  "resource" = {
+    vault_id="ocid1.vault.oc1.eu-frankfurt-1.x"
+    "compartment_id": "ocid1.tenancy.oc1..x",
+    display_name="my-vault"
+    vault_type = "DEFAULT"
+  }
+}
+```
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
