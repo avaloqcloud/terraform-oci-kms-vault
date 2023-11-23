@@ -3,15 +3,17 @@
 The code provides a reusable Terraform module that provisions a Vault on Oracle Cloud Infrastructure.
 
 ## Example Input
-`key.auto.tfvars.json`:
+`vault.auto.tfvars.json`:
 ```json
-vault = {
-  "resource" = {
-    vault_id="ocid1.vault.oc1.eu-frankfurt-1.x"
-    "compartment_id": "ocid1.tenancy.oc1..x",
-    display_name="my-vault"
-    vault_type = "DEFAULT"
-  }
+{
+    "vault": {
+        "resource": {
+            "vault_id": "ocid1.vault.oc1.eu-frankfurt-1.x",
+            "compartment_id": "ocid1.tenancy.oc1..x",
+            "display_name": "my-vault",
+            "vault_type": "DEFAULT"
+        }
+    }
 }
 ```
 
