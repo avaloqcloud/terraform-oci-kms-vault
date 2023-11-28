@@ -6,14 +6,12 @@ The code provides a reusable Terraform module that provisions a Vault on Oracle 
 `vault.auto.tfvars.json`:
 ```json
 {
-    "vault": {
-        "resource": {
-            "vault_id": "ocid1.vault.oc1.eu-frankfurt-1.x",
-            "compartment_id": "ocid1.tenancy.oc1..x",
-            "display_name": "my-vault",
-            "vault_type": "DEFAULT"
-        }
-    }
+  "vault": {
+    "vault_id": "ocid1.vault.oc1.eu-frankfurt-1.x",
+    "compartment_id": "ocid1.tenancy.oc1..x",
+    "display_name": "my-vault",
+    "vault_type": "DEFAULT"
+  }
 }
 ```
 
@@ -46,7 +44,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_vault"></a> [vault](#input\_vault) | Vault input object | <pre>map(object({<br>    vault_id            = optional(string),<br>    compartment_id      = optional(string),<br>    display_name        = optional(string),<br>    vault_type          = optional(string),<br>    defined_tags        = optional(map(string)),<br>    freeform_tags       = optional(map(string)),<br>    crypto_endpoint     = optional(string),<br>    is_primary          = optional(bool),<br>    management_endpoint = optional(string),<br>  }))</pre> | n/a | yes |
+| <a name="input_vault"></a> [vault](#input\_vault) | Vault input object | <pre>object({<br>    vault_id            = optional(string),<br>    compartment_id      = optional(string),<br>    display_name        = optional(string),<br>    vault_type          = optional(string),<br>    defined_tags        = optional(map(string)),<br>    freeform_tags       = optional(map(string)),<br>    crypto_endpoint     = optional(string),<br>    is_primary          = optional(bool),<br>    management_endpoint = optional(string),<br>  })</pre> | n/a | yes |
 
 ## Outputs
 

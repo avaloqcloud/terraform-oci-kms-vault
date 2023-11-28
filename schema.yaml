@@ -4,4 +4,4 @@ locale: "en"
 variables:
   vault:
     description: "Vault input object"
-    type: map
+    type: object
