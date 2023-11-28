@@ -3,7 +3,7 @@
 The code provides a reusable Terraform module that provisions a Vault on Oracle Cloud Infrastructure.
 
 
->⚠️**CAUTION:** Usage of this module assumes no reliance on existing Terraform/ORM state, apply on existing terraform state while providing `vault_id` will remove existng `vault` resource. ⚠️
+>⚠️**CAUTION:** Usage of this module assumes no reliance on existing Terraform/ORM state, apply on existing terraform state while providing `vault_id` will remove existng `vault` resource if present in state. ⚠️
 
 
 ## Example Input
