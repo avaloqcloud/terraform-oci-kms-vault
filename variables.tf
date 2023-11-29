@@ -12,7 +12,7 @@ variable "vault" {
     management_endpoint = optional(string),
   })
   validation {
-    condition = contains(["DEFAULT", "PRIVATE"], var.vault.vault_type)
+    condition = var.vault.vault_type == null ? true : contains(["DEFAULT", "PRIVATE"], var.vault.vault_type)
     error_message = "Validation of the Vault object failed. 'vault_type' must be one of 'DEFAULT' or 'PRIVATE'"
   }
 }
