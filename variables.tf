@@ -11,7 +11,7 @@ variable "vault" {
     is_primary          = optional(bool),
     management_endpoint = optional(string),
   })
-  # If vault_id/ocid ommited, check whether required resource params are set
+  # If vault_id/ocid ommited, validate whether required resource params are set
   ## compartment_id
   validation {
     condition = var.vault.vault_id == null ? (var.vault.compartment_id != null ? true : false) : true
