@@ -24,7 +24,7 @@ variable "vault" {
   }
   ## vault_type
   validation {
-    condition = var.vault.vault_id == null ? (contains(["DEFAULT", "PRIVATE"], var.vault.vault_type)) : true
+    condition = var.vault.vault_id == null ? (var.vault.vault_type != null ? contains(["DEFAULT", "PRIVATE"], var.vault.vault_type) : false) : true
     error_message = "Validation of the Vault object failed. 'vault_type' must be provided and be one of 'DEFAULT' or 'PRIVATE' if 'vault_id' is ommited."
   }
 }
