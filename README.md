@@ -7,23 +7,11 @@ The code provides a reusable Terraform module that provisions a Vault on Oracle 
 
 
 ## Example Input
-`vault.auto.tfvars.json` (Existing Vault):
+`vault.auto.tfvars.json`:
 ```json
 {
   "vault": {
-    "vault_id": "ocid1.vault.oc1.eu-frankfurt-1.x",
-    "compartment_id": "ocid1.tenancy.oc1..x",
-    "display_name": "my-vault",
-    "vault_type": "DEFAULT"
-  }
-}
-```
-
-`vault.auto.tfvars.json` (Nonexistent Vault):
-```json
-{
-  "vault": {
-    "compartment_id": "ocid1.tenancy.oc1..x",
+    "compartment_id": "ocid1.vault.oc1.eu-frankfurt-1.x",
     "display_name": "my-vault",
     "vault_type": "DEFAULT"
   }
@@ -53,13 +41,13 @@ No modules.
 | Name | Type |
 |------|------|
 | [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/5.18.0/docs/resources/kms_vault) | resource |
-| [oci_kms_vault.existing_resource](https://registry.terraform.io/providers/oracle/oci/5.18.0/docs/data-sources/kms_vault) | data source |
+| [oci_kms_vaults.existing_vault](https://registry.terraform.io/providers/oracle/oci/5.18.0/docs/data-sources/kms_vaults) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_vault"></a> [vault](#input\_vault) | Vault input object | <pre>object({<br>    vault_id            = optional(string),<br>    compartment_id      = optional(string),<br>    display_name        = optional(string),<br>    vault_type          = optional(string),<br>    defined_tags        = optional(map(string)),<br>    freeform_tags       = optional(map(string)),<br>    crypto_endpoint     = optional(string),<br>    is_primary          = optional(bool),<br>    management_endpoint = optional(string),<br>  })</pre> | n/a | yes |
+| <a name="input_vault"></a> [vault](#input\_vault) | Vault input object | <pre>object({<br>    # Required<br>    compartment_id = string,<br>    display_name   = string,<br>    vault_type     = string,<br>    # Optional<br>    defined_tags  = optional(map(string)),<br>    freeform_tags = optional(map(string)),<br>  })</pre> | n/a | yes |
 
 ## Outputs
 

@@ -1,7 +1,17 @@
-data "oci_kms_vault" "existing_resource" {
-  for_each = {
-    for k, v in local.helper_resource_map : k => v
-    if v.vault_id != null
+# Data lookups of existing resources
+## Vault
+data "oci_kms_vaults" "existing_vault" {
+  # Required
+  compartment_id = var.vault.compartment_id
+
+  # Filter
+  filter {
+    name   = "display_name"
+    values = ["${var.vault.display_name}"]
   }
-  vault_id = each.value.vault_id
+  filter {
+    # check if active
+    name   = "state"
+    values = ["ACTIVE"]
+  }
 }
