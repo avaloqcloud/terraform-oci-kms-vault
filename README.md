@@ -1,6 +1,6 @@
 [![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/avaloqcloud/terraform-oci-kms-vault/archive/refs/heads/main.zip)
 # Terraform OCI KMS Vault
-The code provides a reusable Terraform module that provisions a Vault on Oracle Cloud Infrastructure.
+The code provides a reusable and standalone Terraform module that provisions a Vault on Oracle Cloud Infrastructure.
 
 
 >⚠️**CAUTION:** Usage of this module assumes no reliance on existing Terraform/ORM state, apply on existing terraform state will remove existng `vault` resource if managed in state. ⚠️
