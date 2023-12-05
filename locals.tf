@@ -1,37 +1,42 @@
 locals {
-  # Needed in order to iterate in the data lookup
-  helper_resource_map = {
-    "resource" = { # static key only used internally so that we can flatten input and output
-      vault_id = var.vault.vault_id != null ? var.vault.vault_id : null # can either be set in input or not
+  # Potential resources
+  ## Vault
+  potential_vault = length(data.oci_kms_vaults.existing_vault.vaults) < 1 ? {
+    "resource" = {
+      # Required
       compartment_id = var.vault.compartment_id
-      display_name = var.vault.display_name
-      vault_type = var.vault.vault_type
-      defined_tags = var.vault.defined_tags
+      display_name   = var.vault.display_name
+      vault_type     = var.vault.vault_type
+      # Optional
+      defined_tags  = var.vault.defined_tags
       freeform_tags = var.vault.freeform_tags
-      crypto_endpoint = var.vault.crypto_endpoint
-      is_primary = var.vault.is_primary
-      management_endpoint = var.vault.management_endpoint
     }
-  }
+  } : {}
 
-  # Needed to prepare the data for the resource in case the resource does not exist yet
-  potential_resource = length(data.oci_kms_vault.existing_resource) < 1 ? local.helper_resource_map != null ? {
-    for flat_vault in flatten([
-      for k, v in local.helper_resource_map : {
-        vault_id            = null
-        k                   = k
-        compartment_id      = v.compartment_id
-        display_name        = v.display_name
-        vault_type          = v.vault_type
-        defined_tags        = v.defined_tags
-        freeform_tags       = v.freeform_tags
-        crypto_endpoint     = v.crypto_endpoint
-        is_primary          = v.is_primary
-        management_endpoint = v.management_endpoint
-      }
-    ]) : flat_vault.k => flat_vault
-  } : {} : {}
-
-  # Either return newly created resource or existing resource based on ocid
-  output_vault = merge(oci_kms_vault.this, data.oci_kms_vault.existing_resource)
+  # Outputs
+  ## Vault
+  prep_existing_vault_output = length(data.oci_kms_vaults.existing_vault.vaults) > 0 ? {
+    "resource" = {
+      compartment_id                        = data.oci_kms_vaults.existing_vault.vaults[0].compartment_id
+      crypto_endpoint                       = data.oci_kms_vaults.existing_vault.vaults[0].crypto_endpoint
+      defined_tags                          = data.oci_kms_vaults.existing_vault.vaults[0].defined_tags
+      display_name                          = data.oci_kms_vaults.existing_vault.vaults[0].display_name
+      external_key_manager_metadata         = data.oci_kms_vaults.existing_vault.vaults[0].external_key_manager_metadata
+      external_key_manager_metadata_summary = data.oci_kms_vaults.existing_vault.vaults[0].external_key_manager_metadata_summary
+      freeform_tags                         = data.oci_kms_vaults.existing_vault.vaults[0].freeform_tags
+      id                                    = data.oci_kms_vaults.existing_vault.vaults[0].id
+      is_primary                            = data.oci_kms_vaults.existing_vault.vaults[0].is_primary
+      management_endpoint                   = data.oci_kms_vaults.existing_vault.vaults[0].management_endpoint
+      replica_details                       = data.oci_kms_vaults.existing_vault.vaults[0].replica_details
+      restore_from_file                     = data.oci_kms_vaults.existing_vault.vaults[0].restore_from_file
+      restore_from_object_store             = data.oci_kms_vaults.existing_vault.vaults[0].restore_from_object_store
+      restore_trigger                       = data.oci_kms_vaults.existing_vault.vaults[0].restore_trigger
+      restored_from_vault_id                = data.oci_kms_vaults.existing_vault.vaults[0].restored_from_vault_id
+      state                                 = data.oci_kms_vaults.existing_vault.vaults[0].state
+      time_created                          = data.oci_kms_vaults.existing_vault.vaults[0].time_created
+      time_of_deletion                      = data.oci_kms_vaults.existing_vault.vaults[0].time_of_deletion
+      vault_type                            = data.oci_kms_vaults.existing_vault.vaults[0].vault_type
+    }
+  } : {}
+  output_vault = merge(oci_kms_vault.this, local.prep_existing_vault_output)
 }
