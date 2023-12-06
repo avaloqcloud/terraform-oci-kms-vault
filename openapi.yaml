@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: OCI KMS Vault
+  description: Represents end-user input based on terraform module 'terraform-oci-kms-vault'
+  version: 0.0.1
+components:
+  schemas:
+    vault:
+      type: object
+      description: "Vault input object"
+      required: 
+        - display_name
+        - compartment_id
+        - vault_type
+      properties:
+        display_name:
+          $ref: "#/components/schemas/display_name" 
+        compartment_id:
+          $ref: "#/components/schemas/compartment_id"
+        vault_type:
+          $ref: "#/components/schemas/vault_type"
+        defined_tags:
+          $ref: "#/components/schemas/defined_tags"
+        freeform_tags:
+          $ref: "#/components/schemas/freeform_tags"
+    display_name:
+      type: string
+      description: "A user-friendly name for the vault. It does not have to be unique, and it is changeable. Avoid entering confidential information."
+    compartment_id:
+      type: string
+      description: "The OCID of the compartment."
+    vault_type:
+      type: string
+      description: "The type of vault to create. Each type of vault stores the key with different degrees of isolation and has different options and pricing."
+      pattern: '^(DEFAULT|PRIVATE)$'
+      default: "DEFAULT"
+    defined_tags:
+      type: string
+      description: "Defined tags for this resource. Each key is predefined and scoped to a namespace"
+      example: "{\"Operations.CostCenter\": \"42\"}"
+    freeform_tags:
+      type: string
+      description: "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace."
+      example: "{\"Department\": \"Finance\"}"
