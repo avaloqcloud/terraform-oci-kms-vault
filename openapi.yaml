@@ -8,13 +8,13 @@ components:
     vault:
       type: object
       description: "Vault input object"
-      required: 
+      required:
         - display_name
         - compartment_id
         - vault_type
       properties:
         display_name:
-          $ref: "#/components/schemas/display_name" 
+          $ref: "#/components/schemas/display_name"
         compartment_id:
           $ref: "#/components/schemas/compartment_id"
         vault_type:
@@ -23,7 +23,12 @@ components:
           $ref: "#/components/schemas/defined_tags"
         freeform_tags:
           $ref: "#/components/schemas/freeform_tags"
+    client:
+      type: string
+      default: "avq:resident:abbreviation"
+      description: "A user-friendly name for the vault. It does not have to be unique, and it is changeable. Avoid entering confidential information."
     display_name:
+      default: "avq:wallet:vault:name"
       type: string
       description: "A user-friendly name for the vault. It does not have to be unique, and it is changeable. Avoid entering confidential information."
     compartment_id:
