@@ -12,7 +12,7 @@ variable "vault" {
   # Validation
   ## vault_type
   validation {
-    condition = contains(["DEFAULT", "PRIVATE"], var.vault.vault_type)
-    error_message = "Validation of the Vault object failed. 'vault_type' must be one of 'DEFAULT' or 'PRIVATE'."
+    condition = contains(["DEFAULT", "VIRTUAL_PRIVATE"], var.vault.vault_type)
+    error_message = "Validation of the Vault object failed. 'vault_type' must be one of 'DEFAULT' or 'VIRTUAL_PRIVATE'."
   }
 }
