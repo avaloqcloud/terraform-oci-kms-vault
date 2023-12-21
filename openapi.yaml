@@ -32,7 +32,7 @@ components:
     vault_type:
       type: string
       description: "The type of vault to create. Each type of vault stores the key with different degrees of isolation and has different options and pricing."
-      pattern: '^(DEFAULT|PRIVATE)$'
+      pattern: '^(DEFAULT|VIRTUAL_PRIVATE)$'
       default: "DEFAULT"
     defined_tags:
       type: string
