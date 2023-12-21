@@ -38,7 +38,6 @@ No modules.
 | Name | Type |
 |------|------|
 | [oci_kms_vault.this](https://registry.terraform.io/providers/oracle/oci/5.18.0/docs/resources/kms_vault) | resource |
-| [oci_kms_vaults.existing_vault](https://registry.terraform.io/providers/oracle/oci/5.18.0/docs/data-sources/kms_vaults) | data source |
 
 ## Inputs
 
