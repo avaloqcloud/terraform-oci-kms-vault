@@ -1,4 +1,4 @@
 output "vault" {
-  value       = local.output_vault["resource"] # flatten using static map key
+  value       = oci_kms_vault.this
   description = "Vault output object"
 }
